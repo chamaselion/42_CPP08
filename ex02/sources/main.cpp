@@ -6,7 +6,7 @@
 /*   By: bszikora <bszikora@student.42helbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:42:17 by bszikora          #+#    #+#             */
-/*   Updated: 2025/10/28 14:52:34 by bszikora         ###   ########.fr       */
+/*   Updated: 2026/02/17 16:23:09 by bszikora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include <set>
 
 int main() {
     std::cout << "=== MutantStack Tests ===" << std::endl;
@@ -123,6 +124,34 @@ int main() {
     std::cout << "Empty stack empty(): " << (empty_stack.empty() ? "true" : "false") << std::endl;
     
     std::cout << "\n=== All tests completed ===" << std::endl;
+
+    // Test 10: Fill MutantStack from std::set
+    std::cout << "\n10. Fill from std::set:" << std::endl;
+    std::set<int> set_values;
+    set_values.insert(42);
+    set_values.insert(17);
+    set_values.insert(99);
+    set_values.insert(3);
+    set_values.insert(58);
+    set_values.insert(17); // duplicate ignored by set
+
+    MutantStack<int> set_stack;
+    for (std::set<int>::const_iterator it = set_values.begin(); it != set_values.end(); ++it) {
+        set_stack.push(*it);
+    }
+
+    std::cout << "Set size: " << set_values.size() << ", MutantStack size: " << set_stack.size() << std::endl;
+    std::cout << "MutantStack contents (in insertion order from set): ";
+    for (MutantStack<int>::iterator it = set_stack.begin(); it != set_stack.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "MutantStack contents (reverse): ";
+    for (MutantStack<int>::reverse_iterator rit = set_stack.rbegin(); rit != set_stack.rend(); ++rit) {
+        std::cout << *rit << " ";
+    }
+    std::cout << std::endl;
     
     return 0;
 }

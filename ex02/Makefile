@@ -6,53 +6,38 @@
 #    By: bszikora <bszikora@student.42helbronn.d    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/28 14:42:20 by bszikora          #+#    #+#              #
-#    Updated: 2025/10/28 14:52:13 by bszikora         ###   ########.fr        #
+#    Updated: 2026/02/16 12:18:42 by bszikora         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = mutantstack
+NAME		=	MutantStack
+CC		=	c++
+CFLAGS		=	-Wall -Wextra -Werror -std=c++17
+INCL_DIR	=	include
+SRC_DIR		=	sources
+OBJ_DIR		=	objects
 
-# Directories
-SRCDIR = sources
-INCDIR = include
-OBJDIR = objects
+SOURCES		=	main.cpp
+SRCS		=	$(addprefix $(SRC_DIR)/, $(SOURCES))
+OBJS		=	$(addprefix $(OBJ_DIR)/, $(SOURCES:.cpp=.o))
 
-# Compiler and flags
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I$(INCDIR)
+all:			$(NAME)
 
-# Source files
-SOURCES = main.cpp
-SRCFILES = $(addprefix $(SRCDIR)/, $(SOURCES))
+$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I$(INCL_DIR) -c $< -o $@
 
-# Object files
-OBJECTS = $(SRCFILES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-# Default target
-all: $(NAME)
+$(NAME):		$(OBJS)
+	$(CC) $(CFLAGS) -I$(INCL_DIR) $(OBJS) -o $(NAME)
 
-# Create object directory
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
-
-# Compile object files
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# Link executable
-$(NAME): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(NAME)
-
-# Clean object files
 clean:
-	rm -rf $(OBJDIR)
+	rm -rf $(OBJ_DIR)
 
-# Clean everything
-fclean: clean
+fclean:			clean
 	rm -f $(NAME)
 
-# Rebuild
-re: fclean all
+re:				fclean all
 
-# Phony targets
-.PHONY: all clean fclean re
+.PHONY:			all clean fclean re
