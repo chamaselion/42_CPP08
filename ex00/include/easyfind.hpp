@@ -6,7 +6,7 @@
 /*   By: bszikora <bszikora@student.42helbronn.d    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:47:00 by bszikora          #+#    #+#             */
-/*   Updated: 2025/10/28 13:32:31 by bszikora         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:08:15 by bszikora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@
 class NotFoundException : public std::exception
 {
 public:
-	virtual const char* what() const throw()
-	{
-		return "Element not found in container";
-	}
+	virtual const char* what() const throw();
 };
 
 template<typename T>

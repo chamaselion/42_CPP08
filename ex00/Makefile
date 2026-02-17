@@ -5,7 +5,7 @@ INCL_DIR	=	include
 SRC_DIR		=	sources
 OBJ_DIR		=	objects
 
-SOURCES		=	main.cpp
+SOURCES		=	main.cpp easyfind.cpp
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SOURCES))
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(SOURCES:.cpp=.o))
 
