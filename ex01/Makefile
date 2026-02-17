@@ -1,25 +1,13 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: bszikora <bszikora@student.42helbronn.d    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/28 13:39:33 by bszikora          #+#    #+#              #
-#    Updated: 2025/10/28 14:33:07 by bszikora         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME		=	Span
 CC		=	c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror -std=c++17
 INCL_DIR	=	include
 SRC_DIR		=	sources
 OBJ_DIR		=	objects
 
-SRCS		=	$(wildcard $(SRC_DIR)/*.cpp)
-
-OBJS		=	$(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
+SOURCES		=	main.cpp Span.cpp
+SRCS		=	$(addprefix $(SRC_DIR)/, $(SOURCES))
+OBJS		=	$(addprefix $(OBJ_DIR)/, $(SOURCES:.cpp=.o))
 
 all:			$(NAME)
 
