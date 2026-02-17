@@ -1,13 +1,13 @@
 NAME		=	easyfind
 CC		=	c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -Iinclude
-INCL_DIR	=	includes
+CFLAGS		=	-Wall -Wextra -Werror -std=c++17
+INCL_DIR	=	include
 SRC_DIR		=	sources
 OBJ_DIR		=	objects
 
-SRCS		=	$(wildcard $(SRC_DIR)/*.cpp)
-
-OBJS		=	$(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
+SOURCES		=	main.cpp
+SRCS		=	$(addprefix $(SRC_DIR)/, $(SOURCES))
+OBJS		=	$(addprefix $(OBJ_DIR)/, $(SOURCES:.cpp=.o))
 
 all:			$(NAME)
 
